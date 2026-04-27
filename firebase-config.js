@@ -11,7 +11,8 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.5/firebas
 export const ADMIN_EMAIL = "sunilsolanky230@gmail.com";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBbo-pHSPVBrDPwdeUXrpuWWe2hlk1i-94",
+  // apiKey: "AIzaSyBbo-pHSPVBrDPwdeUXrpuWWe2hlk1i-94",
+  apiKey: "AIzaSyBdrGsqAZoaduyZWfKHNGBLfyhEEwZvgeg",
   authDomain: "portfolio-admin-85cc1.firebaseapp.com",
   projectId: "portfolio-admin-85cc1",
   storageBucket: "portfolio-admin-85cc1.firebasestorage.app",
