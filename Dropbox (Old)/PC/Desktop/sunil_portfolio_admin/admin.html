@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Admin | Sunil Solanky</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <div class="admin-bg"></div>
+
+  <main class="admin-shell">
+    <section class="setup-warning" id="setupWarning">
+      <h1>Firebase setup required</h1>
+      <p>Open <strong>firebase-config.js</strong>, paste your Firebase config, enable Email/Password login, then refresh this page.</p>
+      <a href="README_SETUP.txt">Open setup guide</a>
+    </section>
+
+    <section class="auth-card hidden" id="loginPanel">
+      <div class="brand-chip">Admin Login</div>
+      <h1>Portfolio Control Room</h1>
+      <p>Login as admin to add, edit, or delete projects and education details.</p>
+
+      <label for="email">Admin Email</label>
+      <input type="email" id="email" placeholder="Admin email" autocomplete="email" />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Password" autocomplete="current-password" />
+
+      <button id="loginBtn">Login Securely</button>
+      <p class="message" id="loginMessage"></p>
+    </section>
+
+    <section class="dashboard hidden" id="dashboard">
+      <div class="dashboard-header glass">
+        <div>
+          <span class="brand-chip">Sunil Portfolio Admin</span>
+          <h1>Dashboard</h1>
+          <p>Manage live portfolio content without editing code every time.</p>
+        </div>
+        <div class="header-actions">
+          <a href="index.html" target="_blank" rel="noopener">View Portfolio</a>
+          <button id="logoutBtn" class="ghost-btn">Logout</button>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card glass"><span id="projectCount">0</span><p>Projects</p></div>
+        <div class="stat-card glass"><span id="educationCount">0</span><p>Education Items</p></div>
+        <div class="stat-card glass"><span>Live</span><p>GitHub Pages Ready</p></div>
+      </div>
+
+      <section class="panel glass">
+        <div class="panel-heading">
+          <div>
+            <h2 id="projectFormTitle">Add Project</h2>
+            <p>Projects added here will appear in the public portfolio.</p>
+          </div>
+          <button id="cancelProjectEdit" class="small-btn hidden">Cancel Edit</button>
+        </div>
+
+        <form id="projectForm" class="form-grid">
+          <input type="hidden" id="projectId" />
+          <div class="field wide">
+            <label for="projectTitle">Project Title</label>
+            <input id="projectTitle" type="text" placeholder="Example: Attendance Management System" required />
+          </div>
+          <div class="field wide">
+            <label for="projectDescription">Description</label>
+            <textarea id="projectDescription" placeholder="Write a clean project description" required></textarea>
+          </div>
+          <div class="field">
+            <label for="projectTech">Technologies</label>
+            <input id="projectTech" type="text" placeholder="Python, Flask, MySQL" />
+          </div>
+          <div class="field">
+            <label for="projectLink">Project Link</label>
+            <input id="projectLink" type="url" placeholder="https://github.com/..." />
+          </div>
+          <div class="field">
+            <label for="projectOrder">Display Order</label>
+            <input id="projectOrder" type="number" min="1" placeholder="1" />
+          </div>
+          <button class="submit-btn" type="submit" id="projectSubmitBtn">Save Project</button>
+        </form>
+      </section>
+
+      <section class="panel glass">
+        <div class="panel-heading">
+          <div>
+            <h2 id="educationFormTitle">Add Education</h2>
+            <p>Update academic details from here.</p>
+          </div>
+          <button id="cancelEducationEdit" class="small-btn hidden">Cancel Edit</button>
+        </div>
+
+        <form id="educationForm" class="form-grid">
+          <input type="hidden" id="educationId" />
+          <div class="field">
+            <label for="educationTitle">Education Title</label>
+            <input id="educationTitle" type="text" placeholder="BCA — Osmania University" required />
+          </div>
+          <div class="field">
+            <label for="educationYear">Year / Score</label>
+            <input id="educationYear" type="text" placeholder="2026 or 88.4%" />
+          </div>
+          <div class="field wide">
+            <label for="educationDescription">Description</label>
+            <textarea id="educationDescription" placeholder="Write education description" required></textarea>
+          </div>
+          <div class="field">
+            <label for="educationOrder">Display Order</label>
+            <input id="educationOrder" type="number" min="1" placeholder="1" />
+          </div>
+          <button class="submit-btn" type="submit" id="educationSubmitBtn">Save Education</button>
+        </form>
+      </section>
+
+      <section class="panel glass">
+        <div class="panel-heading">
+          <div>
+            <h2>Seed Default Data</h2>
+            <p>Use once after Firebase setup to insert your current projects and education into Firestore.</p>
+          </div>
+          <button id="seedBtn" class="small-btn">Insert Default Data</button>
+        </div>
+        <p class="message success" id="seedMessage"></p>
+      </section>
+
+      <section class="records-layout">
+        <div class="panel glass">
+          <h2>Existing Projects</h2>
+          <div id="projectList" class="record-list"></div>
+        </div>
+        <div class="panel glass">
+          <h2>Existing Education</h2>
+          <div id="educationList" class="record-list"></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>
